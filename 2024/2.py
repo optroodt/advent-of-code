@@ -1,9 +1,6 @@
-import pathlib
+from utils import load_file
 
-
-path = pathlib.Path("2.txt")
-with path.open("r") as fh:
-    lines = map(str.strip, fh.readlines())
+lines = load_file()
 
 
 def get_direction(a, b):

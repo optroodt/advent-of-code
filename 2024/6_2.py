@@ -1,9 +1,8 @@
 import copy
-import pathlib
 
-path = pathlib.Path("6.txt")
-with path.open("r") as fh:
-    lines = list(map(str.strip, fh.readlines()))
+from utils import load_file
+
+lines = load_file("6.txt")
 
 H = len(lines)
 W = len(lines[0])

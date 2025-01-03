@@ -1,11 +1,10 @@
 import collections
 import itertools
-import pathlib
 import string
 
-path = pathlib.Path("8.txt")
-with path.open("r") as fh:
-    lines = list(map(str.strip, fh.readlines()))
+from utils import load_file
+
+lines = load_file()
 
 W, H = len(lines[0]), len(lines)
 

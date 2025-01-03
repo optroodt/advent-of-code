@@ -1,9 +1,8 @@
-import pathlib
 import re
 
-path = pathlib.Path("3.txt")
-with path.open("r") as fh:
-    lines = map(str.strip, fh.readlines())
+from utils import load_file
+
+lines = load_file()
 
 
 def run():

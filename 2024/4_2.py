@@ -1,9 +1,8 @@
 import collections
-import pathlib
 
-path = pathlib.Path("4.txt")
-with path.open("r") as fh:
-    lines = list(map(str.strip, fh.readlines()))
+from utils import load_file
+
+lines = load_file("4.txt")
 
 
 w, h = len(lines[0]) - 1, len(lines) - 1
