@@ -6,9 +6,9 @@ import pathlib
 import re
 import string
 
-path = pathlib.Path("0.txt")  # replace the input
-with path.open("r") as fh:
-    lines = map(str.strip, fh.readlines())
+from utils import load_file
+
+lines = load_file()
 
 
 def run():
