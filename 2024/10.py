@@ -54,13 +54,24 @@ def explore(pos):
     return set(itertools.chain.from_iterable(results))
 
 
+def explore2(pos):
+    if value_at_pos(pos) == 9:
+        return 1
+
+    results = sum([explore2(v) for v in next_positions(pos)])
+    return results
+
+
 def run():
     trailheads = find_trailheads(lines)
     # print(trailheads)
     total_score = 0
+    total_score_2 = 0
     for trailhead in trailheads:
         total_score += len(explore(trailhead))
+        total_score_2 += explore2(trailhead)
     print("Part One:", total_score)
+    print("Part Two:", total_score_2)
 
 
 if __name__ == "__main__":
