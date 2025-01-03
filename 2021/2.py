@@ -1,37 +1,37 @@
-# depth = 0
-# position = 0
+from utils import load_file
 
-# with open('2_input.txt', 'r') as fh:
-# 	for line in fh.readlines():
-# 		instr, str_value = line.strip().split(' ')
-# 		value = int(str_value)
+lines = load_file()
 
-# 		if instr == 'forward':
-# 			position += value
-# 		elif instr == 'up':
-# 			depth -= value
-# 		elif instr == 'down':
-# 			depth += value
+depth = 0
+position = 0
 
-# print(position * depth)
+for line in lines:
+    instr, str_value = line.split(" ")
+    value = int(str_value)
+
+    if instr == "forward":
+        position += value
+    elif instr == "up":
+        depth -= value
+    elif instr == "down":
+        depth += value
+
+print("Part One:", position * depth)
 
 depth = 0
 position = 0
 aim = 0
 
-with open('2_input.txt', 'r') as fh:
-	for line in fh.readlines():
-		instr, str_value = line.strip().split(' ')
-		value = int(str_value)
+for line in lines:
+    instr, str_value = line.split(" ")
+    value = int(str_value)
 
-		if instr == 'forward':
-			position += value
-			depth += aim * value
-		elif instr == 'up':
-			# depth -= value
-			aim -= value
-		elif instr == 'down':
-			# depth += value
-			aim += value
+    if instr == "forward":
+        position += value
+        depth += aim * value
+    elif instr == "up":
+        aim -= value
+    elif instr == "down":
+        aim += value
 
-print(position * depth)
+print("Part Two:", position * depth)
