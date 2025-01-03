@@ -1,11 +1,4 @@
-import collections
-import copy
-import functools
 import itertools
-import operator
-import pathlib
-import re
-import string
 
 from utils import load_file
 
