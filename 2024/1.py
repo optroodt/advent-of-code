@@ -1,8 +1,6 @@
 import collections
 import operator
 import pathlib
-import re
-import string
 import functools
 
 path = pathlib.Path("1.txt")
@@ -19,19 +17,16 @@ def run():
         right.append(b)
 
     counters = collections.Counter(right)
-    # print(counters)
     left = sorted(left)
     right = sorted(right)
-    # print(left, right)
 
     distances = [abs(a - b) for a, b in zip(left, right)]
-    # print(distances)
     y = functools.reduce(operator.add, distances)
-    print(y)
+    print("Part One:", y)
 
     similarities = [a * counters[a] for a in left]
     y = functools.reduce(operator.add, similarities)
-    print(y)
+    print("Part Two:", y)
 
 
 if __name__ == "__main__":

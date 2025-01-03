@@ -1,10 +1,4 @@
-import copy
-import collections
-import operator
 import pathlib
-import re
-import string
-import functools
 
 path = pathlib.Path("6.txt")
 with path.open("r") as fh:
@@ -13,7 +7,7 @@ with path.open("r") as fh:
 H = len(lines)
 W = len(lines[0])
 
-obstructions = set(["#", "O"])
+obstructions = {"#", "O"}
 directions = ["^", ">", "v", "<"]
 
 
@@ -47,7 +41,6 @@ def walk(direction, x, y):
         return direction, -1, -1
 
     if lines[y][x] in obstructions:
-        # print("Found #, rotating")
         direction = directions[(directions.index(direction) + 1) % 4]
         mark(prev_x, prev_y, direction)
         return direction, prev_x, prev_y
@@ -72,18 +65,14 @@ def count():
 
 
 def run():
-    print(W, H)
     d, x, y = find_start()
-    print(d, x, y)
-    # for n in range(55):
     while True:
         d, x, y = walk(d, x, y)
         if x == -1 and y == -1:
             break
 
-    print_grid()
-    print(x, y)
-    print(count())
+    # print_grid()
+    print("Part One", count())
 
 
 if __name__ == "__main__":

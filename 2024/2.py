@@ -1,10 +1,5 @@
-import copy
-import collections
-import operator
 import pathlib
-import re
-import string
-import functools
+
 
 path = pathlib.Path("2.txt")
 with path.open("r") as fh:
@@ -42,16 +37,20 @@ def run():
     for l in lines:
         levels.append(list(map(int, l.split(" "))))
 
-    safe_counter = 0
-    safe = False
+    safe_counter_one = 0
+    safe_counter_two = 0
     for n, level in enumerate(levels):
+        if is_safe(level):
+            safe_counter_one += 1
+
         for i in range(len(level)):
             lvl = level[:i] + level[i + 1 :]
             if is_safe(lvl):
-                # print(n, level)
-                safe_counter += 1
+                safe_counter_two += 1
                 break
-    print(safe_counter)
+
+    print("Part One:", safe_counter_one)
+    print("Part Two:", safe_counter_two)
 
 
 if __name__ == "__main__":

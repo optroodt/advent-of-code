@@ -1,10 +1,6 @@
-import copy
 import collections
-import operator
 import pathlib
-import re
-import string
-import functools
+
 
 path = pathlib.Path("4.txt")
 with path.open("r") as fh:
@@ -40,26 +36,20 @@ def grab(x_pos, y_pos):
         positions[7].append(grab_char(x_pos - i, y_pos + i))
 
     counted = 0
-    # print(positions.values())
-    # print(positions)
     for chars in positions.values():
         if "".join(chars) == "XMAS":
             counted += 1
-    # print(positions)
     return counted
 
 
 def run():
-    # print(w, h)
     total_count = 0
     for y, v in enumerate(lines):
         for x, h in enumerate(v):
             if h == "X":
-                print(x, y)
                 total_count += grab(x, y)
-        # break
 
-    print(total_count)
+    print("Part One:", total_count)
 
 
 if __name__ == "__main__":

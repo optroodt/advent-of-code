@@ -1,10 +1,4 @@
-import copy
-import collections
-import operator
 import pathlib
-import re
-import string
-import functools
 
 path = pathlib.Path("5.txt")
 with path.open("r") as fh:
@@ -28,8 +22,6 @@ def is_correct(p, px, rs):
     for x in px[1:]:
         for r in rs:
             if r.startswith(f"{x}|"):
-                print("breaking")
-                print(p, px, rs)
                 return False
     return True
 
@@ -45,8 +37,7 @@ def run():
         target.append(line)
 
     rules.sort()
-    print(rules)
-    print(orders)
+
     total_correct = 0
     tally = 0
     incorrect = []
@@ -55,7 +46,6 @@ def run():
         breaking = 0
         for i, page in enumerate(pages):
             rs = get_rules(page, rules)
-            # print(rs)
             if not is_correct(page, pages[i:], rs):
                 breaking += 1
         if breaking == 0:
@@ -64,10 +54,8 @@ def run():
         else:
             incorrect.append(pages)
 
-    print(total_correct, tally)
-    print("====" * 10)
+    print("Part One", tally)
 
-    print(incorrect)
     for inc in incorrect:
         prev = []
         while True:
@@ -77,11 +65,10 @@ def run():
                 break
             else:
                 prev = inc[:]
-    print(incorrect)
-    tally2 = 0
+    tally = 0
     for inc in incorrect:
-        tally2 += int(inc[len(inc) // 2])
-    print(tally2)
+        tally += int(inc[len(inc) // 2])
+    print("Part Two:", tally)
 
 
 if __name__ == "__main__":

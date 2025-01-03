@@ -1,10 +1,5 @@
-import copy
-import collections
-import operator
 import pathlib
 import re
-import string
-import functools
 
 path = pathlib.Path("3.txt")
 with path.open("r") as fh:
@@ -12,12 +7,20 @@ with path.open("r") as fh:
 
 
 def run():
-    enabled = True
     data = "".join(lines)
-    matches = re.findall("(mul\(\d+,\d+\)|do(?:n't)?\(\))", data)
-    # print(matches)
-    total = 0
-    for m in matches:
+
+    matches_one = re.findall("(mul\(\d+,\d+\))", data)
+    total_one = 0
+    for m in matches_one:
+        front, back = m.split(",")
+        total_one += int(front[4:]) * int(back[:-1])
+    print("Part One", total_one)
+
+    matches_two = re.findall("(mul\(\d+,\d+\)|do(?:n't)?\(\))", data)
+
+    total_two = 0
+    enabled = True
+    for m in matches_two:
         if m == "do()":
             enabled = True
         elif m == "don't()":
@@ -28,9 +31,9 @@ def run():
                 continue
 
             front, back = m.split(",")
-            total += int(front[4:]) * int(back[:-1])
+            total_two += int(front[4:]) * int(back[:-1])
 
-    print(total)
+    print("Part Two:", total_two)
 
 
 # 646346 is too low
